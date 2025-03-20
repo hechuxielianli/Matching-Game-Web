@@ -1,0 +1,263 @@
+@charset "utf-8";
+/* CSS Document */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('img/background1.png');  /* 添加背景图片 */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #333;
+}
+
+.game-container {
+    width: 90%;
+    max-width: 1000px; /* 增加最大宽度 */
+    background-color: rgba(255, 255, 255, 0.9); /* 半透明白色背景 */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    padding: 20px;
+    margin: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-gap: 10px;
+    margin: 0 auto;
+}
+
+.card {
+    aspect-ratio: 3/4;
+    width: 100%;
+    perspective: 1000px;
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-front {
+    background-color: white;
+    transform: rotateY(180deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.card-back {
+    background-color: #2980b9;
+    background-image: linear-gradient(135deg, #2980b9 0%, #1a5276 100%);
+    background-size: cover;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card.matched {
+    visibility: hidden;
+}
+
+.turn-indicator {
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+}
+
+.player-turn {
+    background-color: #e3f2fd;
+    color: #1565c0;
+}
+
+.ai-turn {
+    background-color: #ffebee;
+    color: #c62828;
+}
+
+.game-message {
+    text-align: center;
+    margin: 15px 0;
+    font-size: 18px;
+    min-height: 30px;
+    font-weight: bold;
+}
+
+.score-display {
+    display: flex;
+    gap: 15px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #2196F3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+button:hover {
+    background-color: #0b7dda;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.card-image {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+}
+
+.card.matched .card-front {
+    background-color: #e8f5e9;
+    border: 2px solid #4caf50;
+}
+
+/* 声音控制按钮样式 */
+.sound-toggle {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #555;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.sound-toggle:hover {
+    color: #2196F3;
+    background-color: transparent;
+    transform: none;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .game-board {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .controls {
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .score-display {
+        width: 100%;
+        justify-content: space-around;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-board {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* 背景音乐按钮样式 */
+.music-toggle {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #555;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    transition: color 0.3s;
+}
+
+.music-toggle:hover {
+    color: #2196F3;
+    background-color: transparent;
+    transform: none;
+}
+
+/* 确保音乐和音效按钮在一行显示 */
+.controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#sound-toggle, #music-toggle {
+    background-color: transparent;
+    color: #555;
+    padding: 8px;
+    transition: color 0.3s;
+}
+
+#sound-toggle:hover, #music-toggle:hover {
+    color: #2196F3;
+    background-color: transparent;
+    transform: none;
+}
+footer {
+    position: fixed;     /* 固定定位，始终在屏幕底部 */
+    bottom: 0;           /* 贴紧底部 */
+    left: 0;             /* 从左边开始 */
+    width: 100%;         /* 宽度为100% */
+    padding: 8px 0;      /* 上下填充空间 */
+    background-color: rgba(255, 255, 255, 0.7); /* 半透明背景 */
+    text-align: center;  /* 文字居中 */
+}
+
+footer p {
+    margin: 0;           /* 移除段落默认边距 */
+    font-size: 12px;     /* 较小的字体 */
+    color: #bbbbbb;      /* 浅灰色文字，不显眼 */
+    font-weight: 300;    /* 更细的字体粗细 */
+    letter-spacing: 0.5px; /* 增加字母间距 */
+    opacity: 0.6;        /* 增加透明度 */
+}
+/* 
+    Copyright (c) 2025 Huang Zhanpeng. All Rights Reserved.
+    Licensed under the MIT License.
+*/

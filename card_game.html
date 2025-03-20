@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>连连看</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+<div class="game-container">
+        <div class="header">
+            <div class="score-board">
+                <div class="player-score">玩家：<span id="player-score">0</span></div>
+                <div class="ai-score">电脑：<span id="ai-score">0</span></div>
+            </div>
+            <div class="turn-indicator" id="turn-indicator">玩家回合</div>
+            <div class="controls">
+    <button id="restart-btn" onclick="initGame()">重新开始</button>
+    <button id="sound-toggle" onclick="toggleSound()" title="关闭音效">
+        <i class="fas fa-volume-up"></i>
+    </button>
+    <!-- 添加背景音乐按钮 -->
+    <button id="music-toggle" onclick="toggleBackgroundMusic()" title="播放背景音乐">
+        <i class="fas fa-music"></i>
+    </button>
+</div>
+        </div>
+        <div class="game-board" id="game-board">
+            <!-- 卡片将通过JS动态生成 -->
+        </div>
+        <div class="game-message" id="game-message"></div>
+    </div>
+<script src="script.js"></script>
+<footer>
+        <p>Copyright &copy; 2025 Huang Zhanpeng. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
+
+<!-- Copyright (c) 2025 Huang Zhanpeng. All Rights Reserved. -->
