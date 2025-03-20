@@ -24,7 +24,7 @@
 AI通过简单的随机算法和记忆来选取牌
 
 `游戏截图`
-[https://github.com/hechuxielianli/Matching-Game-Web/blob/main/game_preview.png](游戏截图)
+[game_preview.png](游戏截图)
 
 <!-- 
     Copyright (c) 2025 Huang Zhanpeng. All Rights Reserved.
